@@ -1,0 +1,23 @@
+# Selftest for check build of OpenKNX OFM with Reference OAM (merging/building of OpenKNX knxprod + build of full releases)
+# Copyright (C) 2026 Cornelius Koepp (OpenKNX); For Usage in OpenKNX-Project only
+
+name: selftest--openknx-ofm-check-simple
+run-name: Selftest `openknx-ofm-check` (Simple)
+
+on: [push]
+
+jobs:
+  ofm-build-check:
+    name: Check OFM-Build (Simple Example)
+
+    uses: ./.github/workflows/openknx-ofm-check.yml
+    with:
+      ofm: OFM-Homematic
+      # Note: use ${{ github.ref_name }} from OFM-repo
+      ofm_ref: v1dev
+      ofm_prefix: DFA
+      oam: OAM-Homematic
+      # oam_ref: v1dev
+      # knxprod_xml: Homematic-Release
+      target: Release
+      KNXPROD_PREFIX: HomematicGW

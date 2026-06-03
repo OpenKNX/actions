@@ -1,0 +1,20 @@
+# Selftest for check build of OpenKNX OAM (merging/building of OpenKNX knxprod for combination of all referenced module versions + build of full releases)
+# Copyright (C) 2026 Cornelius Koepp (OpenKNX); For Usage in OpenKNX-Project only
+
+name: selftest--openknx-oam-check-simple
+run-name: Selftest `openknx-oam-check` (Simple)
+
+on: [push]
+
+jobs:
+  oam-build-check:
+    name: Check OAM-Build (Simple Example)
+
+    uses: ./.github/workflows/openknx-oam-check.yml
+    with:
+      oam: OAM-Homematic
+      oam_ref: v1dev
+      restore_branch: false
+      # knxprod_xml: Homematic-Release
+      target: Release
+      KNXPROD_PREFIX: HomematicGW
