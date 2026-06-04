@@ -8,14 +8,14 @@ on:
   workflow_call:
     inputs:
       oam:
-        required: true
         type: string
+        default: ${{ github.event.repository.name }}
       oam_ref:
         type: string
-        default: v1
+        default: ${{ github.ref_name }}
       restore_branch:
-        required: true
         type: boolean
+        default: false
       target:
         required: true
         type: string
