@@ -8,12 +8,13 @@ on:
   workflow_call:
     inputs:
       ofm:
-        required: true
         type: string
+        default: ${{ github.event.repository.name }}
       ofm_ref:
         type: string
-        default: v1
+        default: ${{ github.ref_name }}
       ofm_prefix:
+        # TODO extract from OFM
         required: true
         type: string
       oam:
@@ -29,6 +30,7 @@ on:
       #   required: true
       #   type: boolean
       KNXPROD_PREFIX:
+        # TODO extract from OFM
         required: true
         type: string
 
