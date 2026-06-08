@@ -20,9 +20,9 @@ on:
       oam:
         required: true
         type: string
-      # oam_ref:
-      #   type: string
-      #   default: v1
+      oam_ref:
+        type: string
+        default: ''
       target:
         required: true
         type: string
@@ -41,15 +41,18 @@ jobs:
     name: Build '${{ inputs.target }}' ${{ inputs.restore_branch && 'branch' || 'commit' }}
     steps:
 
-      - name: Check for Same Name Branch in Reference OAM
+      - name: OAM Branch/Commit Definition
         id: oam_branch
         run: |
-          # TODO allow explicit definition of OAM-branch-name via oam_ref
-          OFM_BRANCH='${{ inputs.ofm_ref }}'
-          BRANCH='v1dev'
-          EXISTS=$(git ls-remote --heads "https://github.com/openknx/${{ inputs.oam }}.git" "${OFM_BRANCH}" | wc -l)
-          if [ "$EXISTS" -gt 0 ]; then
-            BRANCH="${OFM_BRANCH}"
+          BRANCH='${{ inputs.oam_ref }}'
+          if [ "$BRANCH" -eq '' ] ; then
+            # => Check for Same Name Branch in Reference OAM
+            OFM_BRANCH='${{ inputs.ofm_ref }}'
+            BRANCH='v1dev'
+            EXISTS=$(git ls-remote --heads "https://github.com/openknx/${{ inputs.oam }}.git" "${OFM_BRANCH}" | wc -l)
+            if [ "$EXISTS" -gt 0 ]; then
+              BRANCH="${OFM_BRANCH}"
+            fi
           fi
           echo "ref_name=$BRANCH" >> $GITHUB_OUTPUT
           echo "Selected branch: $BRANCH"
