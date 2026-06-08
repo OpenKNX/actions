@@ -61,7 +61,7 @@ jobs:
       # 2. restore
       # 3. overwrite OFM with current commit
 
-      - name: Checkout Reference OAM
+      - name: Checkout OAM
         uses: actions/checkout@v6
         with:
           repository: openknx/${{ inputs.oam }}
