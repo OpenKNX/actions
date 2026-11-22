@@ -45,7 +45,7 @@ jobs:
         id: oam_branch
         run: |
           BRANCH='${{ inputs.oam_ref }}'
-          if [ "$BRANCH" -eq '' ] ; then
+          if [ -z "$BRANCH" ] ; then
             # => Check for Same Name Branch in Reference OAM
             OFM_BRANCH='${{ inputs.ofm_ref }}'
             BRANCH='v1dev'
