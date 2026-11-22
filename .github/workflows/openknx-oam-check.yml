@@ -31,7 +31,7 @@ jobs:
     steps:
 
       - name: Checkout OAM
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           repository: openknx/${{ inputs.oam }}
           ref: ${{ steps.oam_branch.outputs.ref_name }}

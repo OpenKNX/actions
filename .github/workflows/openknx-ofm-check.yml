@@ -62,7 +62,7 @@ jobs:
       # 3. overwrite OFM with current commit
 
       - name: Checkout OAM
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           repository: openknx/${{ inputs.oam }}
           ref: ${{ steps.oam_branch.outputs.ref_name }}
@@ -79,7 +79,7 @@ jobs:
           }
 
       - name: Restore Current OFM Commit
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           repository: openknx/${{ inputs.ofm }}
           ref: ${{ inputs.ofm_ref }}
@@ -124,7 +124,7 @@ jobs:
           fi
 
       - name: Install Python
-        uses: actions/setup-python@v6
+        uses: actions/setup-python@v7
         with:
           python-version: '3.13'
 
